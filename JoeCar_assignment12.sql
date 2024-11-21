@@ -63,10 +63,10 @@ join pizzas p on od.menu_id = p.menu_id
 group by c.name;
 
 -- CREATE TABLE q5_by_dates as 
-select c.name, o.order_date_time, sum(p.price * od.quantity) as total_spent
+select c.name, date(o.order_date_time) as order_date, sum(p.price * od.quantity) as total_spent
 from customers c
 join orders o on c.cust_id = o.cust_id
 join order_details od on o.order_id = od.order_id
 join pizzas p on od.menu_id = p.menu_id
-group by c.name, o.order_date_time
-order by o.order_date_time;
+group by c.name, order_date
+order by order_date;
